@@ -3,49 +3,34 @@ require('./config/config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 //Los app. use son middlewares 
 //Los del bodyParser permiten obtener datos de los formularios
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.json('Desde root')
-});
+//Middleware para las rutas
+app.use('/', require('./routes/routes'));
 
-app.post('/usuario', (req, res) => {
+//Conexión a base de datos
 
-    let body = req.body;
+if (!process.env.URLDB) {
 
-    if (body.nombre === undefined) {
+    process.env.URLDB = 'mongodb://localhost:27017/cafe'
 
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        })
+}
+
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, result) => {
+    if (err) {
+        return console.log(err);
     } else {
-
-        res.json({
-            persona: body
-        })
+        console.log('Conectado a DB');
     }
-
-
 });
 
-app.put('/usuario/:id', (req, res) => {
 
-    //Para obtener el parametro de la URL
-    let id = req.params.id
-    res.json({
-        id
-    })
-});
-
-app.delete('/usuario/', (req, res) => {
-    res.json('delete usuario')
-});
-
+//Puerto
 app.listen(process.env.PORT, () => {
     console.log('Conectado en puerto', process.env.PORT);
 })
