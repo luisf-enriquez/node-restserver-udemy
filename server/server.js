@@ -29,7 +29,6 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, result) => 
     }
 });
 
-
 //Puerto
 app.listen(process.env.PORT, () => {
     console.log('Conectado en puerto', process.env.PORT);
