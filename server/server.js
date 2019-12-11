@@ -10,8 +10,11 @@ const mongoose = require('mongoose');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Middleware para las rutas
-app.use('/', require('./routes/routes'));
+//Middleware para las rutas (con el index se hace una configuración global)
+
+//app.use('/', require('./routes/routes'));
+//app.use('/', require('./routes/login'));
+app.use('/', require('./routes/index'));
 
 //Conexión a base de datos
 

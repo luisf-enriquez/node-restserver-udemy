@@ -45,6 +45,7 @@ const usuarioSchema = new Schema({
 
 });
 
+//para "eliminar" el password antes de pasarlo a la base de datos
 usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
@@ -53,6 +54,7 @@ usuarioSchema.methods.toJSON = function() {
     return userObject;
 }
 
+//Para validar que sea unico el email
 usuarioSchema.plugin(uniqueValidator, {
     message: '{PATH} debe de ser único'
 })

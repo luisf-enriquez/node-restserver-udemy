@@ -6,8 +6,15 @@ const _ = require('underscore');
 //Modelos
 const Usuario = require('../models/usuario');
 
+//importar middleware
+
+const middles = require('../middlewares/autenticacion');
+
 //Routes
-app.get('/usuario', (req, res) => {
+
+//Se puede usar un middleware para usar el JWT
+
+app.get('/usuario', middles.verificaToken ,(req, res) => {
 
     let desde = Number(req.query.desde) || 0;
     let limite = Number(req.query.limite) || 5;
@@ -37,7 +44,7 @@ app.get('/usuario', (req, res) => {
 
 });
 
-app.post('/usuario', (req, res) => {
+app.post('/usuario', [middles.verificaToken, middles.verificaAdmin] ,(req, res) => {
 
     let usuario = new Usuario({
         nombre: req.body.nombre,
@@ -63,7 +70,7 @@ app.post('/usuario', (req, res) => {
 
 });
 
-app.put('/usuario/:id', (req, res) => {
+app.put('/usuario/:id', [middles.verificaToken, middles.verificaAdmin] ,(req, res) => {
 
     //Para obtener el parametro de la URL
     let id = req.params.id
@@ -90,7 +97,7 @@ app.put('/usuario/:id', (req, res) => {
 
 });
 
-app.delete('/usuario/:id', (req, res) => {
+app.delete('/usuario/:id', [middles.verificaToken, middles.verificaAdmin] ,(req, res) => {
 
     let id = req.params.id;
 
