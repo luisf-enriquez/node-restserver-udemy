@@ -7,7 +7,9 @@
     <title>Google Sign-In</title>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="712726985461-7lc08jpt5ufrmab8f0v29sa7t72f3l9u.apps.googleusercontent.com">
+    
+    
+    <meta name="google-signin-client_id" content="142268926446-ud38qne3urh7c4qboap1ehof9oqevilu.apps.googleusercontent.com">
 
 </head>
 <body>
@@ -15,6 +17,7 @@
 
     <a href="#" onclick="signOut();">Sign out</a>
     <script>
+        //712726985461-7lc08jpt5ufrmab8f0v29sa7t72f3l9u.apps.googleusercontent.com
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
