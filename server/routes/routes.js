@@ -16,6 +16,18 @@ const middles = require('../middlewares/autenticacion');
 
 app.get('/usuario', middles.verificaToken ,(req, res) => {
 
+    //Dado que durante la autenticación se guardan todos los datos del esquema del usuario logeado
+    //y estos se pasan a req.usuario como una nueva propiedad, yo puedo acceder a estos en cualquier
+    //petición que realice 
+
+    /* 
+    
+        res.json({
+            usuario: req.usuario
+        })
+
+    */
+
     let desde = Number(req.query.desde) || 0;
     let limite = Number(req.query.limite) || 5;
 
