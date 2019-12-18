@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 //Los app. use son middlewares 
 //Los del bodyParser permiten obtener datos de los formularios
@@ -15,6 +16,9 @@ app.use(bodyParser.json());
 //app.use('/', require('./routes/routes'));
 //app.use('/', require('./routes/login'));
 app.use('/', require('./routes/index'));
+
+//habilitar la carpeta public
+app.use(express.static(path.join(__dirname, '../public')));
 
 //Conexión a base de datos
 
