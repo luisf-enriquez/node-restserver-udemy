@@ -78,6 +78,7 @@ async function verify(token) {
         google: true
     }
 }
+
 app.post('/google', async (req,res) => {
 
     let token = req.body.idtoken;
@@ -134,7 +135,7 @@ app.post('/google', async (req,res) => {
 
             usuario.nombre = googleUser.nombre;
             usuario.email = googleUser.email;
-            usuario.img = googleUser.picture;
+            usuario.img = googleUser.img;
             usuario.google = true;
             usuario.password = ':)';
 

@@ -6,7 +6,7 @@ const jwt = require ('jsonwebtoken');
 
 const verificaToken = (req, res, next) => {
 
-    //se busca el token en los Headers de la petición
+    //se busca el token en los HEADERS de la petición
     let token = req.get('token');
 
     //Para verificar el token y decodificar la información contenida en este
